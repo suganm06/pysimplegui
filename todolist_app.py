@@ -1,24 +1,25 @@
 import PySimpleGUI as sg
 
 def read_file():
-    x = []
+    ss = []
     with open("task.txt", "r") as reader:
         line = reader.readline()
         print(line)
         while line != '':
             x.append(line.strip("\n"))
             line = reader.readline()
-    print(x)        
-    return x
+    print(ss)        
+    return ss
 
-def write_file(x):
+def write_file(ss):
     with open("task.txt", "w") as writer:
-        for line in x:
-            writer.write(line + "\n")
+        for x in ss:
+            writer.write("%s,%s\n" % (x[0],x[1]))
 
 def add_task(values):
-    y = [values['priority'],values['taskname']]
-    todolist.append(y)
+    y = values['priority']
+    z = values['taskname']
+    todolist.append([y,z])
     window.FindElement('priority').Update(value="")
     window.FindElement('taskname').Update(value="")
     window.FindElement('todolist').Update(values=todolist)
